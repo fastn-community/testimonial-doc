@@ -12,13 +12,15 @@ string github: https://github.com/fastn-community/testimonial-doc/
 module category: fastn-community.github.io/testimonial-doc
 optional string preview-url:
 optional string created-by:
+optional string creator-url:
 optional body description:
 ftd.type-data types: $inherited.types
 
 -- cdc.page:
 
 -- cdc.hero-section: $home.package-name
-subtitle: $home.created-by
+creator-name: $home.created-by
+creator-url: $home.created-url
 cta-primary-text: View more hero designs
 cta-primary-link: https://fastn.com/featured/
 cta-secondary-text: Preview
