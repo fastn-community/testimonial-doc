@@ -1,0 +1,31 @@
+-- import: fastn-community.github.io/testimonial-doc/data
+-- import: fastn-community.github.io/testimonial-doc/docs
+-- import: fastn-community.github.io/testimonial-doc/lib
+
+
+
+-- docs.home:
+created-by: By **Priyanka**
+preview-url: preview/
+
+
+-- component testimonials:
+optional caption title:
+optional body subtitle:
+data.testimonial list testimonail-list:
+
+-- ftd.column:
+width: fill-container
+align-content: center
+spacing.fixed.px: 20
+
+-- lib.testiomonials-helper: $testimonials.title
+subtitle: $testimonials.subtitle
+testimonail-list: $testimonials.testimonail-list
+
+-- end: ftd.column
+
+-- end: testimonials
+
+
+
