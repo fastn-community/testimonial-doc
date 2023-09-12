@@ -44,6 +44,25 @@ Proin viverra nulla sem, vel molestie lacus volutpat nec. Integer ut bibendum er
 -- end: cdc.preview
 
 
+-- cdc.overview: Properties
+
+-- cdc.component-property: `title`
+type: caption  (`optional`)
+
+It's used to define the title for your testimonials component.
+
+-- cdc.component-property: `subtitle`
+type: body (`optional`)
+
+It's used to define the subtitle for your testimonials component.
+
+-- cdc.component-property: `testimonial-list`
+type: list (`required`)
+
+It's used to define the testimonial list for testimonials  component.
+
+-- end: cdc.overview
+
 -- end: cdc.page
 
 

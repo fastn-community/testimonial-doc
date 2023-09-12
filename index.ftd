@@ -1,6 +1,6 @@
 -- import: fastn-community.github.io/testimonial-doc/data
 -- import: fastn-community.github.io/testimonial-doc/docs
-
+-- import: fastn-community.github.io/testimonial-doc/lib
 
 
 
@@ -10,116 +10,22 @@ preview-url: preview/
 
 
 -- component testimonials:
-caption title:
+optional caption title:
 optional body subtitle:
 data.testimonial list testimonail-list:
-integer $current-slide: 0
-integer max: $length(a = $testimonials.testimonail-list)
 
 -- ftd.column:
 width: fill-container
 align-content: center
 spacing.fixed.px: 20
 
--- ftd.text: $testimonials.title
-if: { testimonials.title }
-role: $inherited.types.heading-large
-
--- ftd.text: $testimonials.subtitle
-if: { testimonials.subtitle }
-role: $inherited.types.copy-regular
-width.fixed.percent: 70
-color: $inherited.colors.text
-
--- ftd.row:
-align-content: center
-spacing.fixed.px: 20
-
--- ftd.text: \<
-$on-click$: $clamp($a = $testimonials.current-slide, by = -1, min = 0, max = $testimonials.max)
-role: $inherited.types.heading-large
-
--- testimonial-loop:
-item: $obj
-index: $LOOP.COUNTER
-current-slide: $testimonials.current-slide
-for: obj in $testimonials.testimonail-list
-
--- ftd.text: \\>
-$on-click$: $clamp($a = $testimonials.current-slide, by = 1, min = 0, max = $testimonials.max)
-role: $inherited.types.heading-large
-
-
--- end: ftd.row
-
+-- lib.testiomonials-helper: $testimonials.title
+subtitle: $testimonials.subtitle
+testimonail-list: $testimonials.testimonail-list
 
 -- end: ftd.column
-
 
 -- end: testimonials
 
 
 
-
-
--- component testimonial-loop:
-data.testimonial item:
-integer index:
-integer current-slide:
-
--- ftd.column:
-padding.px: 40
-if: { testimonial-loop.current-slide == testimonial-loop.index }
-color: $inherited.colors.text-strong
-background.solid: $inherited.colors.background.base
-border-radius.px: 20
-width: fill-container
-align-content: center
-role: $inherited.types.copy-small
-spacing.fixed.px: 20
-
--- ftd.text: $testimonial-loop.item.title
-role: $inherited.types.heading-small
-
--- ftd.text: $testimonial-loop.item.body
-
-
--- ftd.row:
-
--- ftd.image: 
-if: { testimonial-loop.item.avatar != NULL }
-src: $testimonial-loop.item.avatar
-
--- ftd.column:
-
--- ftd.text: $testimonial-loop.item.user
-
--- ftd.text: $testimonial-loop.item.designation
-if: { testimonial-loop.item.designation != NULL }
-
--- end: ftd.column
-
--- end: ftd.row
-
--- end: ftd.column
-
--- end: testimonial-loop
-
-
-
-
-
--- void clamp(a,by,min,max):
-integer $a:
-integer by: 1
-integer min: 0
-integer max: 5
-
-a = (((a - min) + by) % (max - min)) + min
-
-
-
--- integer length(a):
-data.testimonial list a:
-
-len(a)
