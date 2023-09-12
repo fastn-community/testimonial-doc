@@ -11,7 +11,7 @@ optional ftd.image-src avatar:
 -- testimonial: Fastn
 user: Patrica AVA
 designation: UI Designer
-avatar: $assets.files.static.avatar.svg
+avatar: $assets.files.images.avatar.jpg
 
 A design approach is a general philosophy that may or may not include a guide
 for specific methods that work.It is a long established fact that a reader will
@@ -20,7 +20,7 @@ be distracted by the readable content of a page when looking at its layout.
 -- testimonial: Fastn is power
 user: Meenu
 designation: Fastn Builder
-avatar: $assets.files.static.avatar.svg
+avatar: $assets.files.images.avatar.jpg
 
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
@@ -31,7 +31,7 @@ aliquet faucibus.
 -- testimonial: Fastn is best
 user: Priyanka
 designation: Fastn Builder
-avatar: $assets.files.static.avatar.svg
+avatar: $assets.files.images.avatar.jpg
 
 Nam lacinia nisi sed mauris luctus, id vestibulum enim luctus. Integer iaculis
 est a turpis consequat, id sagittis tellus aliquam. Suspendisse sagittis elit

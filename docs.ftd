@@ -10,7 +10,6 @@ string package-full-name: fastn-community.github.io/testimonial-doc
 optional string license-url: https://github.com/fastn-community/testimonial-doc/blob/home/LICENSE
 string github: https://github.com/fastn-community/testimonial-doc/
 module category: fastn-community.github.io/testimonial-doc
-ftd.image-src image: $assets.files.images.image.svg
 optional string preview-url:
 optional string created-by:
 optional body description:
@@ -64,7 +63,6 @@ It's used to define the testimonial list for testimonials  component.
 -- end: cdc.overview
 
 -- end: cdc.page
-
 
 -- end: home
 
