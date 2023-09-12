@@ -1,0 +1,114 @@
+-- import: fastn-community.github.io/testimonial-doc
+-- import: fastn-community.github.io/testimonial-doc/data
+-- import: cdc
+
+
+
+-- component home:
+string package-name: testimonial-doc
+string package-full-name: fastn-community.github.io/testimonial-doc
+optional string license-url: https://github.com/fastn-community/testimonial-doc/blob/home/LICENSE
+string github: https://github.com/fastn-community/testimonial-doc/
+module category: fastn-community.github.io/testimonial-doc
+ftd.image-src image: $assets.files.images.image.svg
+optional string preview-url:
+optional string created-by:
+optional body description:
+ftd.type-data types: $inherited.types
+
+-- cdc.page:
+
+-- cdc.hero-section: $home.package-name
+subtitle: $home.created-by
+cta-primary-text: View more hero designs
+cta-primary-link: https://fastn.com/featured/
+cta-secondary-text: Preview
+cta-secondary-link: $home.preview-url
+github-url: $home.github
+license-url: $home.license-url
+
+-- cdc.preview: Hero Stack
+
+-- cdc.code-with-preview:
+
+$sample-code(a = $home.package-full-name, cname = stack)
+
+-- home.category.testimonials: Title copy goes here
+testimonail-list: $data.list-of-testimonials
+
+sagittis eros. Quisque quis euismod lorem. Etiam sodales ac felis id interdum.
+Proin viverra nulla sem, vel molestie lacus volutpat nec. Integer ut bibendum erat.
+
+-- end: cdc.code-with-preview
+
+-- end: cdc.preview
+
+
+-- end: cdc.page
+
+
+-- end: home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- string sample-code(a,cname):
+string a:
+string cname:
+
+"\;; In FASTN.ftd \\n"
++ "-- fastn.dependency:" + a + "\\n\\n"
++ "\;; In the file where you want to add the header (e.g., `index.ftd`)\\n\\n"
++ "\;; Add this at the top of the file\\n"
++ "-- import: " + a + " as hero\\n\\n"
++ "\;; Add this where you want to show the component\\n"
++ "-- hero." + cname +": Title copy goes here\\n"
++ "cta-primary-text: View more\\n"
++ "cta-primary-url: /\\n"
++ "cta-secondary-text: Preview\\n"
++ "cta-secondary-url: /\\n"
++ "image: $assets.files.image.svg\\n\\n"
++ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt sagittis eros. Quisque quis euismod lorem. Etiam sodales ac felis id interdum. Proin viverra nulla sem, vel molestie lacus volutpat nec. Integer ut bibendum erat."
+
+
+
+-- string sample-code-without-image(a,cname):
+string a:
+string cname:
+
+"\;; In FASTN.ftd \\n"
++ "-- fastn.dependency:" + a + "\\n\\n"
++ "\;; In the file where you want to add the header (e.g., `index.ftd`)\\n\\n"
++ "\;; Add this at the top of the file\\n"
++ "-- import: " + a + " as hero\\n\\n"
++ "\;; Add this where you want to show the component\\n"
++ "-- hero." + cname +": Title copy goes here\\n"
++ "cta-primary-text: View more\\n"
++ "cta-primary-url: /\\n"
++ "cta-secondary-text: Preview\\n"
++ "cta-secondary-url: /\\n"
++ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tincidunt sagittis eros. Quisque quis euismod lorem. Etiam sodales ac felis id interdum. Proin viverra nulla sem, vel molestie lacus volutpat nec. Integer ut bibendum erat."
