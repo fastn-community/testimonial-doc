@@ -27,11 +27,11 @@ cta-secondary-link: $home.preview-url
 github-url: $home.github
 license-url: $home.license-url
 
--- cdc.preview: Hero Stack
+-- cdc.preview: Testimonial
 
 -- cdc.code-with-preview:
 
-$sample-code(a = $home.package-full-name, cname = stack)
+$sample-code(a = $home.package-full-name, cname = testimonial)
 
 -- home.category.testimonials: Title copy goes here
 testimonail-list: $data.list-of-testimonials

@@ -73,10 +73,13 @@ role: $inherited.types.heading-small
 
 
 -- ftd.row:
+spacing.fixed.px: 12
 
 -- ftd.image: 
 if: { testimonial-loop.item.avatar != NULL }
 src: $testimonial-loop.item.avatar
+width.fixed.px: 48
+border-radius.px: 50
 
 -- ftd.column:
 
