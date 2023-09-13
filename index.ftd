@@ -6,26 +6,19 @@
 
 -- docs.home:
 created-by: By **Priyanka**
-preview-url: preview/
+
+
 
 
 -- component testimonials:
 optional caption title:
 optional body subtitle:
-data.testimonial list testimonail-list:
+data.testimonial list testimonial-list:
 
--- ftd.column:
-width: fill-container
-align-content: center
-spacing.fixed.px: 20
 
--- lib.testiomonials-helper: $testimonials.title
+-- lib.testimonial-helper: $testimonials.title
 subtitle: $testimonials.subtitle
-testimonail-list: $testimonials.testimonail-list
+testimonial-list: $testimonials.testimonial-list
 
--- end: ftd.column
 
 -- end: testimonials
-
-
-
