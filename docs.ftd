@@ -34,7 +34,7 @@ license-url: $home.license-url
 $sample-code(a = $home.package-full-name, cname = testimonial)
 
 -- home.category.testimonials: Title copy goes here
-testimonail-list: $data.list-of-testimonials
+testimonial-list: $data.list-of-testimonials
 
 sagittis eros. Quisque quis euismod lorem. Etiam sodales ac felis id interdum.
 Proin viverra nulla sem, vel molestie lacus volutpat nec. Integer ut bibendum erat.

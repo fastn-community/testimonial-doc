@@ -2,9 +2,15 @@
 -- record testimonial:
 caption title:
 string user: 
-body body:
+body text:
 optional string designation:
 optional ftd.image-src avatar:
+
+
+
+
+
+
 
 -- testimonial list list-of-testimonials:
 
