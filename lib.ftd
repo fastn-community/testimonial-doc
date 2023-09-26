@@ -11,6 +11,7 @@ integer max: $length(a = $testimonial-helper.testimonial-list)
 width: fill-container
 align-content: center
 spacing.fixed.px: 20
+color: $inherited.colors.text-strong
 
 -- ftd.text: $testimonial-helper.title
 if: { testimonial-helper.title != NULL }
