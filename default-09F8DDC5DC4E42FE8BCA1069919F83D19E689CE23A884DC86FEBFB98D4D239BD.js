@@ -472,6 +472,10 @@ class RecordInstance {
         }
         this.#closures.forEach((closure) => closure.update());
     }
+    setAndReturn(key, value) {
+        this.set(key, value);
+        return this;
+    }
     replace(obj) {
         for (let key in this.#fields) {
             if (!(key in obj.#fields)) {
@@ -580,6 +584,7 @@ fastn_dom.propertyMap = {
     "bottom": "b",
     "color": "c",
     "shadow": "sh",
+    "text-shadow": "tsh",
     "cursor": "cur",
     "display": "d",
     "flex-wrap": "fw",
@@ -805,6 +810,7 @@ fastn_dom.PropertyKind = {
     Controls: 114,
     Muted: 115,
     LinkColor: 116,
+    TextShadow: 117,
 };
 
 
@@ -1337,6 +1343,10 @@ class Node2 {
         }
     }
     updateParentPosition(value) {
+        if (ssr) {
+            let parent = this.#parent;
+            if (parent.style) parent.style["position"] = value;
+        }
         if (!ssr) {
             let current_node = this.#node;
             if (current_node) {
@@ -1502,6 +1512,32 @@ class Node2 {
         } else {
             let lightClass = this.attachCss("box-shadow", lightShadowCss, true);
             this.attachCss("box-shadow", darkShadowCss, true, `body.dark .${lightClass}`);
+        }
+    }
+    attachTextShadow(value) {
+        if (fastn_utils.isNull(value)) {
+            this.attachCss("text-shadow", value);
+            return;
+        }
+
+        const color = value.get("color");
+
+        const lightColor = fastn_utils.getStaticValue(color.get("light"));
+        const darkColor = fastn_utils.getStaticValue(color.get("dark"));
+
+        const blur = fastn_utils.getStaticValue(value.get("blur"));
+        const xOffset = fastn_utils.getStaticValue(value.get("x_offset"));
+        const yOffset = fastn_utils.getStaticValue(value.get("y_offset"));
+
+        const shadowCommonCss = `${xOffset} ${yOffset} ${blur}`;
+        const lightShadowCss =  `${shadowCommonCss} ${lightColor}`;
+        const darkShadowCss = `${shadowCommonCss} ${darkColor}`;
+
+        if (lightShadowCss === darkShadowCss) {
+            this.attachCss("text-shadow", lightShadowCss, false);
+        } else {
+            let lightClass = this.attachCss("box-shadow", lightShadowCss, true);
+            this.attachCss("text-shadow", darkShadowCss, true, `body.dark .${lightClass}`);
         }
     }
     attachLinearGradientCss(value) {
@@ -1942,6 +1978,8 @@ class Node2 {
             this.attachCss("z-index", staticValue);
         } else if (kind === fastn_dom.PropertyKind.Shadow) {
             this.attachShadow(staticValue);
+        } else if (kind === fastn_dom.PropertyKind.TextShadow) {
+            this.attachTextShadow(staticValue);
         } else if (kind === fastn_dom.PropertyKind.Classes) {
             fastn_utils.removeNonFastnClasses(this);
             if (!fastn_utils.isNull(staticValue)) {
@@ -2674,6 +2712,28 @@ let fastn_utils = {
            return obj;
         }
     },
+    getInheritedValues(default_args, inherited, function_args) {
+        let record_fields = {
+            "colors": ftd.default_colors.getClone().setAndReturn("is-root", true),
+            "types": ftd.default_types.getClone().setAndReturn("is-root", true)
+        }
+        Object.assign(record_fields, default_args);
+        let fields = {};
+        if (inherited instanceof fastn.recordInstanceClass) {
+            fields = inherited.getAllFields();
+            if (fields["colors"].get("is-root")) {
+               delete fields.colors;
+            }
+            if (fields["types"].get("is-root")) {
+               delete fields.types;
+            }
+        }
+        Object.assign(record_fields, fields);
+        Object.assign(record_fields, function_args);
+        return fastn.recordInstance({
+              ...record_fields
+        });
+    },
     removeNonFastnClasses(node) {
         let classList = node.getNode().classList;
         let extraCodeData = node.getExtraData().code;
@@ -3055,6 +3115,21 @@ let fastn_utils = {
             result += ch_map[current] ?? current;
         }
         return result;
+    },
+
+    // Used to initialize __args__ inside component js functions
+    getArgs(default_args, passed_args) {
+        let arguments = default_args;
+        for (var arg in passed_args) {
+            if (!default_args.hasOwnProperty(arg)) {
+                arguments[arg] = passed_args[arg];
+                continue;
+            }
+            if (default_args.hasOwnProperty(arg) && fastn_utils.getStaticValue(passed_args[arg]) !== undefined) {
+                arguments[arg] = passed_args[arg];
+            }
+        }
+        return arguments;
     },
 }
 
@@ -4638,6 +4713,6 @@ ftd.breakpoint_width = fastn.recordInstance({
 });
 ftd.device = fastn.mutable(fastn_dom.DeviceData.Desktop);
 let inherited = fastn.recordInstance({
-  colors: ftd.default_colors,
-  types: ftd.default_types
+  colors: ftd.default_colors.getClone().setAndReturn("is_root", true),
+  types: ftd.default_types.getClone().setAndReturn("is_root", true)
 });
